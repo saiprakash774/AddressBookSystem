@@ -4,7 +4,7 @@ import java.util.ArrayList;
 import java.util.List;
 import java.util.Scanner;
 
-public class AddressBook {
+public class AddressBook implements InAddressBook {
 	List<Contacts> ContactsList = new ArrayList<>();
 
 	public void addNewContact() {
@@ -66,16 +66,16 @@ public class AddressBook {
 		}
 	}
 
-		public static void main(String args[]) {
+	public static void main(String args[]) {
 		Scanner s2 = new Scanner(System.in);
 		AddressBook addressbook = new AddressBook();
 		int value = 1;
 		while (value == 1) {
-			System.out.println("Enter 0: to Quit\n"+ "1:add contacts\n"+ "2.edit contacts\n"+"3.delete contact");
+			System.out.println("Enter 0: to Quit\n" + "1:add contacts\n" + "2.edit contacts\n" + "3.delete contact");
 			int choice = s2.nextInt();
 			switch (choice) {
 			case 0:
-				value=0;
+				value = 0;
 				break;
 			case 1:
 				addressbook.addNewContact();
@@ -91,25 +91,25 @@ public class AddressBook {
 		}
 	}
 
-		private void deleteContact() {
-			Scanner s3 = new Scanner(System.in);
-				int num = 1;
-				for(Contacts contact:ContactsList) {
-				System.out.println(contact.toString());
-				}
-				System.out.println("Enter first name of a person to delete person:");
-				String name = s3.next();
-				for (Contacts contact : ContactsList) {
-					if (name.equalsIgnoreCase(contact.firstName)) {
-						Scanner s4 = new Scanner(System.in);
-						System.out.println("enter 1 to confirm delete: ");
-						int confirmation = s4.nextInt();
-						if (confirmation == 1) {
-							ContactsList.remove(contact);
-							break;
-						} else
-							break;
-					}
-				}
+	public void deleteContact() {
+		Scanner s3 = new Scanner(System.in);
+		int num = 1;
+		for (Contacts contact : ContactsList) {
+			System.out.println(contact.toString());
+		}
+		System.out.println("Enter first name of a person to delete person:");
+		String name = s3.next();
+		for (Contacts contact : ContactsList) {
+			if (name.equalsIgnoreCase(contact.firstName)) {
+				Scanner s4 = new Scanner(System.in);
+				System.out.println("enter 1 to confirm delete: ");
+				int confirmation = s4.nextInt();
+				if (confirmation == 1) {
+					ContactsList.remove(contact);
+					break;
+				} else
+					break;
 			}
 		}
+	}
+}
